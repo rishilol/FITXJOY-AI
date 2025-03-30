@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITXJOY AI - Your Gentle Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+            color: #2c3e50;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '🌸';
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 40px;
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        body::after {
+            content: '🌺';
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 40px;
+            opacity: 0.5;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .nav-bar {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #e1e8f0;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            background: linear-gradient(45deg, #4a90e2, #67b8f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+
+        .nav-link:hover {
+            background: rgba(74, 144, 226, 0.1);
+            color: #2c3e50;
+            transform: translateY(-2px);
+        }
+
+        .main-content {
+            margin-top: 5rem;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .hero-section {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: -1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(45deg, #4a90e2, #67b8f7);
+            border-radius: 20px;
+            padding: 2px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(74, 144, 226, 0.2);
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 650px;
+            object-fit: cover;
+            object-position: center 0%;
+            border-radius: 18px;
+            margin-bottom: 0;
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(74, 144, 226, 0.3), rgba(103, 184, 247, 0.3));
+            pointer-events: none;
+            border-radius: 18px;
+        }
+
+        .upload-section {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+            margin: 2rem auto;
+            border: 1px solid #e1e8f0;
+            text-align: center;
+            position: relative;
+        }
+
+        .upload-section::before {
+            content: '🌅';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            opacity: 0.5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .mode-button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mode-button.looksmaxxing {
+            background: linear-gradient(45deg, #4a90e2, #67b8f7);
+        }
+
+        .mode-button.dripmaxxing {
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+        }
+
+        .mode-button.auramaxxing {
+            background: linear-gradient(45deg, #9b59b6, #a55eea);
+        }
+
+        .mode-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .upload-area {
+            border: 2px dashed #4a90e2;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: #67b8f7;
+            background: rgba(74, 144, 226, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: #4a90e2;
+            margin-bottom: 1rem;
+        }
+
+        .preview-section {
+            display: none;
+            margin-top: 2rem;
+        }
+
+        .preview-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .advice-content {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 1rem;
+            text-align: left;
+            line-height: 1.8;
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50;
+        }
+
+        .advice-content h3 {
+            color: #4a90e2;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        .advice-content p {
+            margin-bottom: 1.2rem;
+            padding: 1rem;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(74, 144, 226, 0.1);
+            font-size: 1.1rem;
+        }
+
+        .advice-content strong {
+            color: #4a90e2;
+            font-weight: 600;
+            padding: 0 0.2rem;
+        }
+
+        .advice-content em {
+            color: #67b8f7;
+            font-style: italic;
+            background: rgba(74, 144, 226, 0.05);
+            padding: 0.2rem 0.5rem;
+            border-radius: 5px;
+        }
+
+        .advice-content ul {
+            margin: 1.5rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .advice-content li {
+            margin-bottom: 1rem;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(74, 144, 226, 0.05);
+            border-radius: 10px;
+            position: relative;
+            border: 1px solid rgba(74, 144, 226, 0.1);
+        }
+
+        .advice-content li:before {
+            content: "✨";
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+        }
+
+        .advice-content .inspiration {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1), rgba(103, 184, 247, 0.1));
+            border-radius: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #4a90e2;
+            border: 1px solid rgba(74, 144, 226, 0.2);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.1);
+        }
+
+        .advice-content .inspiration:before,
+        .advice-content .inspiration:after {
+            content: "✨";
+            margin: 0 0.5rem;
+        }
+
+        h1, h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #4a90e2, #67b8f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .upload-section {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+
+            .hero-image {
+                height: 300px;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            body::before,
+            body::after {
+                font-size: 30px;
+            }
+
+            .advice-content {
+                padding: 1.5rem;
+                font-size: 1rem;
+            }
+
+            .advice-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .advice-content p,
+            .advice-content li {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+
+            .advice-content .inspiration {
+                padding: 1.5rem;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">FITXJOY</a>
+            <div class="nav-links">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="/blog" class="nav-link">Blog</a>
+            </div>
+        </div>
+    </nav>
+    <div class="main-content">
+        <div class="hero-section">
+            <img src="/static/images/fitxfearless1.jpg" alt="FITXFEARLESS" class="hero-image">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="upload-section">
+            <h1>Welcome to FITXJOY</h1>
+            <p>Upload your photo and let our gentle AI guide you on your journey to self-improvement</p>
+            
+            <div class="button-group">
+                <button class="mode-button looksmaxxing" onclick="setMode('looksmaxxing')">
+                    <i class="fas fa-smile"></i> LOOKSMAXXING
+                </button>
+                <button class="mode-button dripmaxxing" onclick="setMode('dripmaxxing')">
+                    <i class="fas fa-tshirt"></i> DRIPMAXXING
+                </button>
+                <button class="mode-button auramaxxing" onclick="setMode('auramaxxing')">
+                    <i class="fas fa-sparkles"></i> AURAMAXXING
+                </button>
+            </div>
+
+            <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                <p>Click or drag your photo here</p>
+                <input type="file" id="fileInput" style="display: none" accept="image/*">
+            </div>
+
+            <div class="preview-section" id="previewSection">
+                <h2>Your Personalized Advice</h2>
+                <img id="previewImage" class="preview-image">
+                <div class="advice-content" id="adviceContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = 'looksmaxxing';
+
+        function setMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-button').forEach(btn => {
+                btn.style.transform = 'scale(1)';
+            });
+            document.querySelector(`.mode-button.${mode}`).style.transform = 'scale(1.05)';
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    document.getElementById('previewImage').src = e.target.result;
+                    document.getElementById('previewSection').style.display = 'block';
+                    uploadImage(file);
+                }
+                
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function uploadImage(file) {
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('mode', currentMode);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('adviceContent').innerHTML = data.advice;
+                } else {
+                    document.getElementById('adviceContent').innerHTML = 'Error: ' + data.error;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('adviceContent').innerHTML = 'Error uploading image';
+            });
+        }
+    </script>
+</body>
+</html> 
