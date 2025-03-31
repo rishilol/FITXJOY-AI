@@ -7,7 +7,7 @@ from datetime import datetime
 import google.generativeai as genai
 from dotenv import load_dotenv
 
-# Load environment variables
+# Load environment variables lol.
 load_dotenv()
 
 app = Flask(__name__, static_url_path='/static', static_folder='static')
